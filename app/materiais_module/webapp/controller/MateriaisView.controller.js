@@ -1,6 +1,6 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    'sap/m/MessageToast'    
+    'sap/m/MessageToast'
 ], (Controller, MessageToast) => {
     "use strict";
 
@@ -56,7 +56,9 @@ sap.ui.define([
 
             const oModel = this.getOwnerComponent().getModel();
 
-            const sID = parseInt(this.byId("inputIDialog").getValue());
+            let sID = this.byId("inputIDialog").getValue();
+            sID = sID ? parseInt(sID) : null;
+            //const sID = parseInt(this.byId("inputIDialog").getValue());
             const sNumMat = parseInt(this.byId("inputNumMatDialog").getValue());
             const sNome = this.byId("inputNomeDialog").getValue();
             const sDescr = this.byId("inputDescrDialog").getValue();
@@ -66,7 +68,7 @@ sap.ui.define([
                 const oContext = oModel.bindContext("/CriarMaterial(...)");
 
                 oContext.setParameter("ID", sID);
-                oContext.setParameter("NumMat", sNumMat); 
+                oContext.setParameter("NumMat", sNumMat);
                 oContext.setParameter("Nome", sNome);
                 oContext.setParameter("Descr", sDescr);
 

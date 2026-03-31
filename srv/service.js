@@ -43,26 +43,27 @@ module.exports = cds.service.impl(async function () {
 
         const { Material } = this.entities;
 
-        const { ID, NumMat, Nome, Descr } = req.data;
+        let { ID, NumMat, Nome, Descr } = req.data;
 
-        // validações
-        if (!ID || !NumMat || !Nome || !Descr) {
+        if (!NumMat || !Nome || !Descr) {
             req.error(400, "Preencha todos os campos");
         }
 
-        // verifica se já existe
-        const existe = await SELECT.from(Material).where({ ID });
+        // 🔥 gerar ID corretamente
+        if (ID === null || ID === undefined) {
 
-        if (existe.length) {
-            req.error(400, "Material já existe");
+            const ultimo = await SELECT.one
+                .from(Material)
+                .columns('max(ID) as maxID');
+
+            ID = (ultimo?.maxID || 0) + 1;
         }
 
-        // cria
         const novo = { ID, NumMat, Nome, Descr };
 
         await INSERT.into(Material).entries(novo);
 
         return novo;
-    });      
+    });
 
 })
