@@ -66,7 +66,7 @@ sap.ui.define([
                 const oContext = oModel.bindContext("/CriarMaterial(...)");
 
                 oContext.setParameter("ID", sID);
-                oContext.setParameter("NumMat", sNumMat); // ✅ corrigido
+                oContext.setParameter("NumMat", sNumMat); 
                 oContext.setParameter("Nome", sNome);
                 oContext.setParameter("Descr", sDescr);
 
