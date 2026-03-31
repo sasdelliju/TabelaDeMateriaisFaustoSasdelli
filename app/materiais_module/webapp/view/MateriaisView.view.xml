@@ -1,0 +1,72 @@
+<mvc:View controllerName="materiaisnamespace.materiaismodule.controller.MateriaisView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+
+	<Input id="inputQTD" placeholder="Digite o ID"  width="150px" fieldWidth="10%"/>
+
+	<Button text="Buscar" press="onBuscar" />	
+    <Button text="Criar" press="onOpenDialog" />	
+
+        <Table
+            items="{tableMaterial>/Table}"
+            inset="false">
+
+            <columns>
+                <Column>
+                    <Text text="ID" />
+                </Column>
+
+                <Column>
+                    <Text text="NumMat" />
+                </Column>
+
+                <Column>
+                    <Text text="Nome" />
+                </Column>
+
+                <Column>
+                    <Text text="Descrição" />
+                </Column>
+            </columns>
+
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{tableMaterial>ID}" />
+                        <Text text="{tableMaterial>NumMat}" />
+                        <Text text="{tableMaterial>Nome}" />
+                        <Text text="{tableMaterial>Descr}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+
+        </Table>
+
+        <Dialog id="dialogMaterial" title="Novo Material">
+
+            <VBox class="sapUiSmallMargin">
+
+                <Input id="inputIDialog" placeholder="ID" type="Number" />
+
+                <Input id="inputNumMatDialog" placeholder="NumMat" type="Number" />
+
+                <Input id="inputNomeDialog" placeholder="Nome" />
+
+                <Input id="inputDescrDialog" placeholder="Descr" />                
+
+            </VBox>
+
+            <beginButton>
+                <Button text="Cadastrar" press="onCriarMaterialDialog" type="Emphasized"/>
+            </beginButton>
+
+            <endButton>
+                <Button text="Cancelar" press="onCloseDialog" />
+            </endButton>
+
+        </Dialog>
+
+
+    </Page>
+</mvc:View>

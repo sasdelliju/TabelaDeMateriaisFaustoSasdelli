@@ -39,4 +39,30 @@ module.exports = cds.service.impl(async function () {
         return result;
     });
 
+    this.on('CriarMaterial', async (req) => {
+
+        const { Material } = this.entities;
+
+        const { ID, NumMat, Nome, Descr } = req.data;
+
+        // validações
+        if (!ID || !NumMat || !Nome || !Descr) {
+            req.error(400, "Preencha todos os campos");
+        }
+
+        // verifica se já existe
+        const existe = await SELECT.from(Material).where({ ID });
+
+        if (existe.length) {
+            req.error(400, "Material já existe");
+        }
+
+        // cria
+        const novo = { ID, NumMat, Nome, Descr };
+
+        await INSERT.into(Material).entries(novo);
+
+        return novo;
+    });      
+
 })
