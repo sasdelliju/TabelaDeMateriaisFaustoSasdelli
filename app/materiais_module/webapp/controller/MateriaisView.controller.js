@@ -13,15 +13,13 @@ sap.ui.define([
         },
 
         handleRouteMatched: function () {
-            this.createModel(); // <-- FALTAVA ISSO            
+            this.createModel();           
         },
 
         //cria o modelg
         createModel: function () {
             this.getView().setModel(
                 new sap.ui.model.json.JSONModel({
-
-                    variavelInput: 1111111,
 
                     Table: [
                         {
@@ -117,7 +115,6 @@ sap.ui.define([
                     err?.cause?.error?.message ||
                     "Erro ao buscar qtd material";
 
-                //sap.m.MessageBox.error(sMensagem);
                 MessageToast.show(sMensagem);
             }
         },
